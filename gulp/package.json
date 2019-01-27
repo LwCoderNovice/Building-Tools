@@ -6,7 +6,9 @@
   "dependencies": {
     "gulp": "^4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-less": "^4.0.1"
+  },
   "scripts": {
     "dev": "gulp develop"
   },
