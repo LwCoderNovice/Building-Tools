@@ -4,10 +4,12 @@
   "description": "About gulp tools knowledge",
   "main": "gulpfile",
   "dependencies": {
-    "gulp": "^4.0.0"
+    "gulp": "^4.0.0",
+    "less-plugin-autoprefix": "^2.0.0"
   },
   "devDependencies": {
-    "gulp-less": "^4.0.1"
+    "gulp-less": "^4.0.1",
+    "gulp-rename": "^1.4.0"
   },
   "scripts": {
     "dev": "gulp develop"

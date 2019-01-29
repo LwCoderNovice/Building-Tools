@@ -1,0 +1,38 @@
+// FORM ELEMENTS COMMON STYLE
+// *** input
+
+// *** checkbox
+
+// *** radio
+.radio-block {
+    label {
+        input[type='radio'] {
+            display: none;
+            + span {
+                position: relative;
+                display: inline-block;
+                width: 18px;
+                height: 18px;
+                border: 1px solid #ebeded;
+                border-radius: 8px;
+                &::before {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    content: '';
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 8px;
+                }
+            }
+            &:checked + span {
+                background: #72acff;
+                border-color: #72acff;
+                
+            }
+        }
+    }
+}
