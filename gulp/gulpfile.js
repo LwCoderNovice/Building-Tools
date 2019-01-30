@@ -8,15 +8,12 @@ var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
 
 gulp.task('default', function() {
     return  gulp.src('../src/**/style.less')
-    .pipe(less({
-        plugins : [autoprefix]
-    }))
-    .pipe(rename(function(path) {
-        var dirname = path.dirname;
-        console.log(path.dirname);
-        path.dirname  = dirname.replace(new RegExp("themes\\(.*)"),"themes-$1");
-        console.log(path.dirname);
-    }))
-    .pipe(gulp.dest('../_ui/'))
+            .pipe(less({
+                plugins : [autoprefix]
+            }))
+            .pipe(rename(function(path) {
+                path.dirname  = path.dirname.replace(/themes\\(.*)/,"themes-$1");
+            }))
+            .pipe(gulp.dest('../_ui/'));
 
 })
