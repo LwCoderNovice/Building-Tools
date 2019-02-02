@@ -9,6 +9,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var cleanCSS = require('gulp-clean-css');
+var strip = require('gulp-strip-comments');
 var LessAutoprefix = require('less-plugin-autoprefix');
 var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
 
@@ -82,10 +83,13 @@ gulp.task('js:pro', function() {
     return gulp.src('../src/**/**.js')
             .pipe(jshint())
             .pipe(concat('main.js'))
+            .pipe(strip())
             .pipe(rename(function(path) {
                 path.dirname  = path.dirname.replace(/themes\\(.*)/,"themes-$1");
             }))
-            .pipe(uglify())
+            .pipe(uglify({
+                mangle: true
+            }))
             .pipe(rename('main.min.js'))
             .pipe(gulp.dest('../_ui/js'));
 });
@@ -107,11 +111,13 @@ gulp.task('watch', function() {
     gulp.watch('../src/themes/**/less/*.less',  gulp.series('less'));
     gulp.watch('../src/**/*.js',  gulp.series('js:dev'));
 });
+// this the produce envirenments not maps and minify files
 gulp.task('default', 
     gulp.series('clean', 
         gulp.parallel('copy', 'less:pro', 'js:pro')
     )
 );
+// this the develop envirenments has maps
 gulp.task('dev', 
     gulp.series('clean', 
         gulp.parallel('copy', 'less:dev', 'js:dev')
