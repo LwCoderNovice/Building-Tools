@@ -5,33 +5,49 @@
 
 // *** radio
 .radio-block {
+    &.line {
+        display: inline-block;
+    }
     label {
+        cursor: pointer;
+        font-size: 14px;
         input[type='radio'] {
-            display: none;
+            position: absolute;
+            left: -9999px;
             + span {
+                height: 18px;
+                padding-left: 24px;
                 position: relative;
                 display: inline-block;
-                width: 18px;
-                height: 18px;
-                border: 1px solid #ebeded;
-                border-radius: 8px;
-                &::before {
+                &::before,
+                &::after {
                     position: absolute;
-                    top: 0;
+                    background: #fff;
+                    border-radius: 8px;
+                    
+                }
+                &::before {
+                    width: 14px;
+                    height: 14px;
+                    border: 1px solid #ebeded;
                     bottom: 0;
                     left: 0;
-                    right: 0;
-                    margin: auto;
+                    content: '';
+                }
+                &::after {
                     content: '';
                     width: 4px;
                     height: 4px;
-                    border-radius: 8px;
+                    z-index: 1;
+                    left: 6px;
+                    bottom: 6px;
                 }
             }
             &:checked + span {
-                background: #72acff;
-                border-color: #72acff;
-                
+                &::before {
+                    background: #72acff;
+                    border-color: #72acff;
+                }
             }
         }
     }

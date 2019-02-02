@@ -108,7 +108,7 @@ gulp.task('js:plugins', function() {
 });
 // Watch TODO
 gulp.task('watch', function() {
-    gulp.watch('../src/themes/**/less/*.less',  gulp.series('less'));
+    gulp.watch('../src/themes/**/less/*.less',  gulp.series('less:dev'));
     gulp.watch('../src/**/*.js',  gulp.series('js:dev'));
 });
 // this the produce envirenments not maps and minify files
