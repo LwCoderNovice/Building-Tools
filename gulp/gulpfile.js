@@ -65,7 +65,7 @@ gulp.task('less:pro', function() {
 });
 // Compression customer js and create map
 gulp.task('js:dev', function() {
-    return gulp.src('../src/**/**.js')
+    return gulp.src('../src/js/**.js')
             .pipe(jshint())
             .pipe(sourcemaps.init())
             .pipe(concat('main.js'))
@@ -80,7 +80,7 @@ gulp.task('js:dev', function() {
 });
 // Compression customer js only
 gulp.task('js:pro', function() {
-    return gulp.src('../src/**/**.js')
+    return gulp.src('../src/js/**.js')
             .pipe(jshint())
             .pipe(concat('main.js'))
             .pipe(strip())

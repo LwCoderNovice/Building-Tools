@@ -1,0 +1,41 @@
+// COMMON STYLE
+.global-message {
+    position: relative;
+    border-radius: @border-radio;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: @hro-white;
+    margin: @large-space 0;
+    padding: 18px 25px;
+    line-height: 1;
+    .message-text {
+        b {
+            padding-right: 5px;
+        }
+    }
+    .remove {
+        cursor: pointer;
+        color: @hro-white;
+    }
+    &.error-message {
+        background: @hro-error;
+    }
+    &.warning-message {
+        background: @hro-warning;
+    }
+    &.success-message {
+        background: @hro-success;
+    }
+    &.info-message {
+        background: @hro-secondary;
+    }
+}
+
+
+label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #202124;
+    font-family: 'MyriadPro';
+}

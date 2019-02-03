@@ -1,16 +1,135 @@
 // FORM ELEMENTS COMMON STYLE
 // *** input
+.form-group,
+.input-group {
+    input.form-control {
+        border: 2px solid @hro-graycale-light;
+        font-size: 13px;
+        color: @hro-common-color;
+        font-family: 'MyriadPro';
+        height: 40px;
+        &:focus {
+            border-color: @hro-primary;
+            box-shadow: none;
+        }
+    }
+    &.disabled {
+        label {
+            color: @hro-graycale-lighest;
+        }
+        input.form-control {
+            border-color: @hro-graycale-lighest;
+            pointer-events: none;
+        }
+        
+    }
+    .error-bubble {
+        display: none;
+    }
+    &.error {
+        label {
+            color: @hro-error;
+        }
+        input.form-control {
+            border-color: @hro-error;
+        }
+        &.bubble-form {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .error-bubble {
+            display: inline-block;
+            position: relative;
+            background: @hro-error;
+            color: @hro-white;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            border-radius: 0.25rem;
+            height: 40px;
+            padding-left: @large-space;
+            padding-right: @large-space;
+            margin-left: @medium-space;
+            .glyphicon-triangle-left {
+                position: absolute;
+                left: -9px;
+                top: 13px;
+                color: @hro-error;
+            }
+        }
+    }
+}
 
+.input-group-addon {
+    background: @hro-graycale-lighest;
+    border-color: transparent;
+    font-weight: @bold-font-weight;
+    font-size: @small-font-size;
+    color: @hro-graycale-light;
+}
 // *** checkbox
-
-// *** radio
-.radio-block {
+.checkbox-block {
+    margin: 5px 0;
     &.line {
         display: inline-block;
     }
     label {
         cursor: pointer;
         font-size: 14px;
+        font-weight: normal;
+        input[type='checkbox'] {
+            position: absolute;
+            left: -9999px;
+            + span {
+                height: 18px;
+                padding-left: 24px;
+                position: relative;
+                display: inline-block;
+                &::before,
+                &::after {
+                    position: absolute;
+                    background: @hro-white;
+                    border-radius: 3px;
+                }
+                &::before {
+                    width: 14px;
+                    height: 14px;
+                    border: 1px solid @hro-border-color;
+                    bottom: 0;
+                    left: 0;
+                    content: '';
+                }
+                &::after {
+                    content: '√'; // TODO add the checked icons √
+                    width: 4px;
+                    height: 4px;
+                    z-index: 1;
+                    left: 3px;
+                    top: 0;
+                    color: @hro-white;
+                    background: transparent;
+                }
+            }
+            &:checked + span {
+                &::before {
+                    background: @hro-primary;
+                    border-color: @hro-primary;
+                }
+            }
+        }
+    }
+}
+// *** radio
+.radio-block {
+    margin: 5px 0;
+    &.line {
+        display: inline-block;
+    }
+    label {
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: normal;
         input[type='radio'] {
             position: absolute;
             left: -9999px;
@@ -22,14 +141,14 @@
                 &::before,
                 &::after {
                     position: absolute;
-                    background: #fff;
+                    background: @hro-white;
                     border-radius: 8px;
                     
                 }
                 &::before {
                     width: 14px;
                     height: 14px;
-                    border: 1px solid #ebeded;
+                    border: 1px solid @hro-border-color;
                     bottom: 0;
                     left: 0;
                     content: '';
@@ -39,16 +158,103 @@
                     width: 4px;
                     height: 4px;
                     z-index: 1;
-                    left: 6px;
-                    bottom: 6px;
+                    left: 5px;
+                    bottom: 5px;
                 }
             }
             &:checked + span {
                 &::before {
-                    background: #72acff;
-                    border-color: #72acff;
+                    background: @hro-primary;
+                    border-color: @hro-primary;
                 }
             }
         }
     }
 }
+// *** button
+.btn {
+    font-size: @small-font-size;
+    font-weight: @bold-font-weight;
+    padding: 13px 25px;
+    line-height: 1;
+    &,
+    &:active,
+    &.active {
+      &:focus,
+      &.focus {
+        outline: 0;
+      }
+    }
+    &.btn-default {
+        .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+        border-width: 2px;
+        padding: 12px 25px;
+    }
+}
+
+.input-group {
+    
+    
+}
+.form-group-select {
+    position: relative;
+    border: 2px solid #739dd2;
+    border-radius: 0.25rem;
+    min-height: calc(2.25rem + 2px);
+    width: 100%;
+    margin-top: @large-space;
+    .select-text {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        line-height: 40px;
+        width: 100%;
+        padding-left:@medium-space;
+        padding-right: @medium-space;
+        .glyphicon-menu-down {
+            color: @hro-graycale-light;
+            font-size: 10px;
+            display: inline-flex;
+            align-self: center;
+        }
+    }
+    select {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0;
+        z-index: 2;
+        width: 100%;
+        height: 40px;
+        option {
+            opacity: 0;
+            display: none;
+            height: 40px;
+        }
+        &:focus {
+            border: none;
+        }
+    }
+    .option-group {
+        margin-top: 40px;
+        left: 0;
+        padding: 0;
+        margin-bottom: 0;
+        li {
+            height: 40px;
+            line-height: 40px;
+            border-top: 1px solid #f7f9fa;
+            list-style: none;
+            padding-left: @medium-space;
+            padding-right: @medium-space;
+            cursor: pointer;
+            &:hover {
+                background: #f6f6f7;
+            }
+        }
+    }
+}
+
